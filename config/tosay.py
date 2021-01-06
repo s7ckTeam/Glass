@@ -28,11 +28,16 @@ def todaySay():
         try:
             req = requests.get(
                 "https://rest.shanbay.com/api/v2/quote/quotes/today/", timeout=3)
+            with open(Paths.config[0] + 'today.json', 'w', encoding="utf-8") as f:
+                f.write(req.text)
         except requests.exceptions.ConnectionError:
             print(mkPut.fuchsia("[{0}]".format(time.strftime(
                 "%H:%M:%S", time.localtime()))), mkPut.yellow("[warning]"), "更新每日一说超时")
-        with open(Paths.config[0]+'today.json', 'w', encoding="utf-8") as f:
-            f.write(req.text)
+        except requests.exceptions.ReadTimeout:
+            print(mkPut.fuchsia("[{0}]".format(time.strftime(
+                "%H:%M:%S", time.localtime()))), mkPut.yellow("[warning]"), "更新每日一说超时")
+        # with open(Paths.config[0]+'today.json', 'w', encoding="utf-8") as f:
+        #     f.write(req.text)
 
     with open(Paths.config[0]+'today.json', 'r', encoding="utf-8") as f:
         today = json.load(f)
