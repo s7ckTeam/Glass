@@ -129,15 +129,15 @@ python Glass.py -f 127.0.0.1/24 //支持文本内IP资产，可添加IP段
 ## 三、效果：
 
 **1.本地识别：**
-![](./image/u1.png)
-![](./image/u2.png)
+![](./Image/u1.png)
+![](./Image/u2.png)
 
 **2.fofa识别：**
 
-![](./image/c0.png)
-![](./image/c1.png)
-![](./image/c2.png)
-![](./image/Glass.gif)
+![](./Image/c0.png)
+![](./Image/c1.png)
+![](./Image/c2.png)
+![](./Image/Glass.gif)
 ## 四、更新：
 ### 测试更新信息
 
