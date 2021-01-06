@@ -61,17 +61,18 @@ class Fofa(threading.Thread):
             datas = json.loads(target.text)
             self.ipInfo(datas['results'])
             req.close()
+            lock.release()
         except requests.exceptions.ReadTimeout:
             print(mkPut.fuchsia('[{0}]'.format(time.strftime(
                 "%H:%M:%S", time.localtime()))), mkPut.red('[ERROR]'), '请求超时')
         except requests.exceptions.ConnectionError:
             print(mkPut.fuchsia('[{0}]'.format(time.strftime(
-                "%H:%M:%S", time.localtime()))), mkPut.red('[ERROR]'), '请求超时')
+                "%H:%M:%S", time.localtime()))), mkPut.red('[ERROR]'), '网络超时')
         except json.decoder.JSONDecodeError:
             print(mkPut.fuchsia('[{0}]'.format(time.strftime(
                 "%H:%M:%S", time.localtime()))), mkPut.red('[ERROR]'), '获取失败，请重试')
+            lock.release()
         self.sem.release()
-        lock.release()
 
     def ipInfo(self, datas):
         print(mkPut.fuchsia('[{0}]'.format(time.strftime(
