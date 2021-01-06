@@ -21,6 +21,8 @@ Glass为s7ck Team 红队武器库F-Box里的一款信息收集工具。
 Glass是一款针对资产列表的快速指纹识别工具，通过调用Fofa Api快速查询资产信息并识别重点资产的指纹，也可针对IP/IP段或资产列表进行快速的指纹识别。
 Glass旨在帮助红队人员在资产信息收集期间能够快速从C段、大量杂乱的资产中精准识别到易被攻击的系统，从而实施进一步测试攻击。
 
+ s7ck Team F-box旨在通过开源或者开放的方式，长期维护并推进涉及安全研究各个领域不同环节的工具化，高度自动化，将立足于不同安全领域、不同安全环节的研究人员和工具链接/封装/优化起来。主要目的是改善安全圈内工具庞杂、水平层次不齐、开源无人维护、工具找不到的等多种问题，营造一个更好更开放的安全工具促进与交流的技术氛围。
+
 ### 开发语言
 
 * Python3
@@ -67,7 +69,7 @@ Options:
 #### 相关配置更改
 
 * API设置在`config/config.py`中`fofaApi`设置，输入对应的`email`与`key`即可
-* 线程默认 `100`可在`config/config.py`中`threadNum`修改线程数**（注：建议在200以内）**
+* 线程默认 `100`可在`config/config.py`中`threadNum`修改线程数 **（注：建议在200以内）**
 * 每日一说可设置开启关闭，在`config/config.py`中`tosayRun`，`True`为开，`False`为关
 
  
@@ -95,7 +97,7 @@ fofaApi = {
 ```bash
 python Glass.py -i 127.0.0.1  //支持单IP资产
 python Glass.py -i 127.0.0.1/24 //支持IP段资产
-python Glass.py -f 127.0.0.1/24 //支持文本内IP资产，可添加IP段
+python Glass.py -f ips.txt //支持文本内IP资产，可添加IP段
 
 ```
 
@@ -129,15 +131,15 @@ python Glass.py -f 127.0.0.1/24 //支持文本内IP资产，可添加IP段
 ## 三、效果：
 
 **1.本地识别：**
-![](./image/u1.png)
-![](./image/u2.png)
+![](./Image/u1.png)
+![](./Image/u2.png)
 
 **2.fofa识别：**
 
-![](./image/c0.png)
-![](./image/c1.png)
-![](./image/c2.png)
-![](./image/Glass.gif)
+![](./Image/c0.png)
+![](./Image/c1.png)
+![](./Image/c2.png)
+![](./Image/Glass.gif)
 ## 四、更新：
 ### 测试更新信息
 
