@@ -17,8 +17,8 @@ OS = platform.system()
 tosayRun = True
 
 fofaApi = {
-    "email": "om2bg0dzanzkdqicdslym3yaxev0@open_wechat",
-    "key": "3a26347cc53260975ffb6f6d2dd4a336",
+    "email": "",
+    "key": "",
 }
 
 fofaSize = 100
