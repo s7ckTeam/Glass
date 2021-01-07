@@ -107,6 +107,8 @@ def fmain(ips):
     sem = threading.Semaphore(threadNum)
     try:
         for ip in ips:
+            if '/' in ip:
+                ip = 'ip="{0}"'.format(ip)
             sem.acquire()
             t = Fofa(ip, sem)
             t.setDaemon(True)

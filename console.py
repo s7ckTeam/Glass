@@ -61,11 +61,7 @@ def main():
         from config.tosay import todaySay
         print(todaySay())
     if options.ip:
-        if "/" in options.ip:
-            ipd = 'ip="{0}"'.format(options.ip)
-            ips.append(ipd)
-        else:
-            ips.append(options.ip)
+        ips.append(options.ip)
         fmain(ips)
         mwebs()
         ruleInfos.main()
@@ -75,9 +71,6 @@ def main():
             for ip in f.readlines():
                 if len(ip) != 1:
                     ips.append(ip.strip())
-                if "/" in ip:
-                    ipd = 'ip="{0}"'.format(ip.strip())
-                    ips.append(ipd)
         fmain(ips)
         mwebs()
         ruleInfos.main()

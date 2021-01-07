@@ -49,7 +49,10 @@ class webInfo(threading.Thread):
             req = s.get(self.target, timeout=5)
             lock.acquire()
             webHeaders = req.headers
-            webCodes = req.content.decode('utf-8')
+            try:
+                webCodes = req.content.decode('utf-8')
+            except UnicodeDecodeError:
+                webCodes = req.content.decode('gbk')
             WebInfos[self.target] = webHeaders, webCodes, req.status_code
             req.close()
             print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
@@ -62,6 +65,7 @@ class webInfo(threading.Thread):
         except requests.exceptions.ChunkedEncodingError:
             pass
         except KeyboardInterrupt:
+            lock.release()
             pass
         self.sem.release()
 
