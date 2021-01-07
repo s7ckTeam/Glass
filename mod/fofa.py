@@ -18,7 +18,7 @@ import requests
 import threading
 import prettytable as pt
 from requests.adapters import HTTPAdapter
-from config.config import fofaApi
+from config.config import fofaApi, fofaSize
 from config.config import USER_AGENTS
 from config.colors import mkPut
 from config.config import threadNum
@@ -45,8 +45,8 @@ class Fofa(threading.Thread):
     def run(self):
         keywordsBs = base64.b64encode(self.ip.encode('utf-8'))
         keywordsBs = keywordsBs.decode('utf-8')
-        url = "https://fofa.so/api/v1/search/all?email={0}&key={1}&qbase64={2}&full=false&fields=ip,title,port,domain,protocol,host&size=10000".format(
-            self.email, self.key, keywordsBs)
+        url = "https://fofa.so/api/v1/search/all?email={0}&key={1}&qbase64={2}&full=false&fields=ip,title,port,domain,protocol,host&size={3}".format(
+            self.email, self.key, keywordsBs, fofaSize)
         try:
             req = requests.Session()
             req.keep_alive = False

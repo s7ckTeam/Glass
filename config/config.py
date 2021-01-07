@@ -17,15 +17,17 @@ OS = platform.system()
 tosayRun = True
 
 fofaApi = {
-    "email": "",
-    "key": "",
+    "email": "om2bg0dzanzkdqicdslym3yaxev0@open_wechat",
+    "key": "3a26347cc53260975ffb6f6d2dd4a336",
 }
+
+fofaSize = 100
 
 threadNum = 100
 
 Website = "http://www.s7ck.com/"
 Team = "s7ck Team"
-Version = "Version 1.1"
+Version = "Version 1.2"
 
 Banner = ['''\033[1;31m
  _____     _               

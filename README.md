@@ -71,6 +71,7 @@ Options:
 * API设置在`config/config.py`中`fofaApi`设置，输入对应的`email`与`key`即可
 * 线程默认 `100`可在`config/config.py`中`threadNum`修改线程数 **（注：建议在200以内）**
 * 每日一说可设置开启关闭，在`config/config.py`中`tosayRun`，`True`为开，`False`为关
+* fofa会员搜索的更改，默认搜索`100`，在`config/config.py`中`fofaSize`更改，普通会员为`100`，高级`10000`，企业`100000`，请自行更改
 
  
 Glass提供了**四种**指纹识别方式，可从本地读取识别，也可以从FOFA进行批量调用API识别(需要FOFA密钥)。
@@ -85,7 +86,7 @@ python Glass.py -w url.txt  // url文件内
 
 **2.FOFA识别：**
 
-注意：从FOFA识别需要配置FOFA 密钥以及邮箱，在`.../config/config.php`内配置好密钥以及邮箱即可使用。
+注意：从FOFA识别需要配置FOFA 密钥以及邮箱，在`.../config/config.py`内配置好密钥以及邮箱即可使用。
 
 ```bash
 fofaApi = {
@@ -155,6 +156,7 @@ python Glass.py -f ips.txt //支持文本内IP资产，可添加IP段
 
 ### 正式版
 
+* 1.2（修复编码问题，以及fofa会员获取数量问题，现在默认`100`，在`config/config.py`中`fofaSize`更改，普通会员为`100`，高级`10000`，企业`100000`，请自行更改）
 * 1.1（处理每日一说超时后写入空文件问题）
 * 1.0（全面优化识别效率，命中率99%）
 * 0.9（添加每日一说获取异常，添加识别规则）
