@@ -22,10 +22,13 @@ class ruleInfo():
         self.rex = re.compile('<title>(.*?)</title>')
 
     def main(self):
-        for cms in ruleDatas:
-            rulesRegex = re.compile(ruleDatas[cms]['regex'])
-            if 'headers' == ruleDatas[cms]['type']:
+        for rule in ruleDatas:
+            cms = rule[0]
+            rulesRegex = rule[2]
+            if 'headers' == rule[1]:
                 self.heads(rulesRegex, cms)
+            elif 'cookie' == rule[1]:
+                self.cookieInfo(rulesRegex, cms)
             else:
                 self.bodys(rulesRegex, cms)
         webTitle = ""
@@ -86,3 +89,25 @@ class ruleInfo():
                 OutInfos[key] = cms, webServer, WebInfos[key][2], webTitle
                 WebInfos.pop(key)
                 # break
+
+    def cookieInfo(self, rulesRegex, cms):
+        webTitle = ""
+        webServer = ""
+        for key in list(WebInfos):
+            if 'server' in WebInfos[key][0]:
+                webServer = WebInfos[key][0]['server']
+            else:
+                webServer = "None"
+            webTitles = re.findall(self.rex, WebInfos[key][1])
+            if webTitles:
+                webTitle = webTitles[0]
+            else:
+                webTitle = "None"
+            for cookie in WebInfos[key][3]:
+                resCookies = re.findall(rulesRegex, cookie)
+                if resCookies:
+                    print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
+                    )))), mkPut.red(cms), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
+                    OutInfos[key] = cms, webServer, WebInfos[key][2], webTitle
+                    WebInfos.pop(key)
+                    break

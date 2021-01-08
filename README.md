@@ -108,40 +108,30 @@ python Glass.py -f ips.txt //支持文本内IP资产，可添加IP段
 
 #### 识别规则添加方法
 
-目前只加了对源码和header头文件进行识别，后面会陆续添加识别的规则以及方式
+目前只加了对源码和`header`头文件进行识别，后面会陆续添加识别的规则以及方式
+
+已加入`cookie`识别
 
 规则文件在`config/rules.py`
 
 **添加方法**
 
 ```
-    "CMS": {
-        "regex": "(<title>Test Demo</title>)",
-        "type": "code",
-    },
-    "CMS2": {
-        "regex": "(set-cookie:xxx-xxx)",
-        "type": "headers",
-    },
+['CMS', 'headers', '(nginx)']
+['CMS', 'cookie', '(MorkerSession)']
+['CMS', 'code', '(<title>Morker</title>)']
+
+三种识别方式，headers头文件识别，cookie识别，code源码识别
+
+支持同方式多种识别内容，比如：
+
+['CMS', 'code', '(<title>Morker</title>)|css/css.css']
+
+注：单引号和反斜杆记得转义，转义符号为\
 ```
 
-* `regex`为正则规则
-* `type`为识别方式
+## 三、更新：
 
-
-## 三、效果：
-
-**1.本地识别：**
-![](./Image/u1.png)
-![](./Image/u2.png)
-
-**2.fofa识别：**
-
-![](./Image/c0.png)
-![](./Image/c1.png)
-![](./Image/c2.png)
-![](./Image/Glass.gif)
-## 四、更新：
 ### 测试更新信息
 
 - 0.9（优化IP段的扫描，以及批量下可添加IP段）
@@ -156,10 +146,24 @@ python Glass.py -f ips.txt //支持文本内IP资产，可添加IP段
 
 ### 正式版
 
+* 1.3（添加`cookie`识别方式，将识别规则改为列表，防止重复的cms不带入识别，识别精准度提高，速度更快）
 * 1.2（修复编码问题，以及fofa会员获取数量问题，现在默认`100`，在`config/config.py`中`fofaSize`更改，普通会员为`100`，高级`10000`，企业`100000`，请自行更改）
 * 1.1（处理每日一说超时后写入空文件问题）
-* 1.0（全面优化识别效率，命中率99%）
+* 1.0（全面优化识别效率，命中率`99%`）
 * 0.9（添加每日一说获取异常，添加识别规则）
+
+## 四、效果：
+
+**1.本地识别：**
+![](./Image/u1.png)
+![](./Image/u2.png)
+
+**2.fofa识别：**
+
+![](./Image/c0.png)
+![](./Image/c1.png)
+![](./Image/c2.png)
+![](./Image/Glass.gif)
 
 ## 五、特别感谢
 * s7ck Team

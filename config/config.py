@@ -27,7 +27,7 @@ threadNum = 100
 
 Website = "http://www.s7ck.com/"
 Team = "s7ck Team"
-Version = "Version 1.2"
+Version = "Version 1.3"
 
 Banner = ['''\033[1;31m
  _____     _               
