@@ -52,7 +52,7 @@ class webInfo(threading.Thread):
             try:
                 webCodes = req.content.decode('utf-8')
             except UnicodeDecodeError:
-                webCodes = req.content.decode('gbk')
+                webCodes = req.content.decode('gbk', 'ignore')
             WebInfos[self.target] = webHeaders, webCodes, req.status_code
             req.close()
             print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
