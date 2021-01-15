@@ -11,8 +11,11 @@ If you don't go through the cold, you can't get the fragrant plum blossom.
 '''
 
 import platform
+import urllib3
 
 OS = platform.system()
+pyVersion = platform.python_version()
+urlVersion = urllib3.__version__
 
 tosayRun = True
 
@@ -22,19 +25,20 @@ fofaApi = {
 }
 
 fofaSize = 100
-
 threadNum = 100
 
+ZIPBALL_PAGE = "https://github.com/s7ckTeam/Glass/zipball/main"
+GIT_REPOSITORY = "https://github.com/s7ckTeam/Glass.git"
 Website = "http://www.s7ck.com/"
 Team = "s7ck Team"
-Version = "1.3"
+Version = "2.0"
 
 Banner = ['''\033[1;31m
  _____     _               
 |  ___|   | |__   _____  __
 | |_ _____| '_ \ / _ \ \/ /
 |  _|_____| |_) | (_) >  < 
-|_|       |_.__/ \___/_/\_\\\033[0m    \033[1;34mVersion {0}\033[0m
+|_|       |_.__/ \___/_/\_\\\033[0m    \033[1;34mVersion: {0}\033[0m
 
 \t{1}
 \t{2}
@@ -44,7 +48,7 @@ Banner = ['''\033[1;31m
  __|___  |__| | __ |_   _|__  __ _ _ __ ___  
 / __| / / __| |/ /   | |/ _ \/ _` | '_ ` _ \ 
 \__ \/ / (__|   <    | |  __/ (_| | | | | | |
-|___/_/ \___|_|\_\   |_|\___|\__,_|_| |_| |_|\033[0m    \033[1;34mVersion {0}\033[0m
+|___/_/ \___|_|\_\   |_|\___|\__,_|_| |_| |_|\033[0m    \033[1;34mVersion: {0}\033[0m
 
 \t{1}
 \t{2}
@@ -53,7 +57,7 @@ Banner = ['''\033[1;31m
      【
 ◎■■■■】〓〓〓〓〓〓〓〓〓〓＞
      【\033[0m
-                            \033[1;34mVersion {0}\033[0m
+                            \033[1;34mVersion: {0}\033[0m
 
 \t{1}
 \t{2}
@@ -63,7 +67,7 @@ Banner = ['''\033[1;31m
  / ___| | __ _ ___ ___ 
 | |  _| |/ _` / __/ __|
 | |_| | | (_| \__ \__ \\
- \____|_|\__,_|___/___/ \033[0m    \033[1;34mVersion {0}\033[0m
+ \____|_|\__,_|___/___/ \033[0m    \033[1;34mVersion: {0}\033[0m
 
  \t{1}
 \t{2}

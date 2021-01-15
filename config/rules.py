@@ -12,6 +12,8 @@ If you don't go through the cold, you can't get the fragrant plum blossom.
 
 ruleDatas = [
     ['Shiro', 'headers', '(=deleteMe|rememberMe=)'],
+    ['Portainer(Docker管理)', 'code',
+     '(portainer.updatePassword|portainer.init.admin)'],
     ['Gogs简易Git服务', 'cookie', '(i_like_gogs)'],
     ['Gitea简易Git服务', 'cookie', '(i_like_gitea)'],
     ['宝塔-BT.cn', 'code', '(app.bt.cn/static/app.png|安全入口校验失败)'],

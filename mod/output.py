@@ -10,24 +10,30 @@
 If you don't go through the cold, you can't get the fragrant plum blossom.
 '''
 
+import os
 import time
-from config.data import Paths, OutInfos
-from config.config import OS
+from config.data import Paths, OutInfos, logger
 from config.colors import mkPut
 
 
 class output():
     def __init__(self):
         self.nowTime = time.strftime("%Y%m%d%H%M%S", time.localtime())
-        if OS == "Windows":
-            self.path = Paths.output[0] + "{0}.txt".format(self.nowTime)
-        else:
-            self.path = Paths.output[0] + "{0}.txt".format(self.nowTime)
+        self.filename = self.nowTime + ".txt"
+        self.path = os.path.join(Paths.output, self.filename)
 
     def outTxt(self):
+        if not os.path.isdir(Paths.output):
+            os.mkdir(Paths.output)
         with open(self.path, 'w', encoding='utf-8') as f:
             for key in OutInfos:
                 f.write("{0} {1}\n".format(key, OutInfos[key]))
         print()
-        print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
-        )))), mkPut.green('[INFO]'), '文件输出路径为：{0}'.format(self.path))
+        logger.info("文件输出路径为：{0}".format(self.path))
+        # print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
+        # )))), mkPut.green('[INFO]'), '文件输出路径为：{0}'.format(self.path))
+
+
+def outMain():
+    start = output()
+    start.outTxt()

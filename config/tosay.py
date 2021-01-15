@@ -14,42 +14,46 @@ import os
 import json
 import time
 import requests
-from config.data import Paths
+from config.data import Paths, logger
 from config.colors import mkPut
 
 
 def todaySay():
-    # fileTamp = os.path.getctime(Paths.config[0] + 'today.json')
-    fileTamp = os.stat(Paths.config[0]+'today.json').st_mtime
-    timeArray = time.localtime(fileTamp)
-    fileTime = time.strftime("%Y%m%d", timeArray)
-    osTime = time.strftime("%Y%m%d", time.localtime())
-    if fileTime != osTime:
-        try:
-            req = requests.get(
-                "https://rest.shanbay.com/api/v2/quote/quotes/today/", timeout=3)
-            with open(Paths.config[0] + 'today.json', 'w', encoding="utf-8") as f:
-                f.write(req.text)
-        except requests.exceptions.ConnectionError:
-            print(mkPut.fuchsia("[{0}]".format(time.strftime(
-                "%H:%M:%S", time.localtime()))), mkPut.yellow("[warning]"), "更新每日一说超时")
-        except requests.exceptions.ReadTimeout:
-            print(mkPut.fuchsia("[{0}]".format(time.strftime(
-                "%H:%M:%S", time.localtime()))), mkPut.yellow("[warning]"), "更新每日一说超时")
-        # with open(Paths.config[0]+'today.json', 'w', encoding="utf-8") as f:
-        #     f.write(req.text)
-
-    with open(Paths.config[0]+'today.json', 'r', encoding="utf-8") as f:
-        today = json.load(f)
-        content = today['data']['content']
-        translation = today['data']['translation']
-        author = "--- {0}".format(today['data']['author'])
-
-    todaySays = '''
+    files = os.path.join(Paths.config, 'today.json')
+    if os.path.isfile(files):
+        fileTamp = os.stat(files).st_mtime  # 获取文件创建时间
+        timeArray = time.localtime(fileTamp)
+        fileTime = time.strftime("%Y%m%d", timeArray)
+        osTime = time.strftime("%Y%m%d", time.localtime())
+        if fileTime != osTime:
+            getpage(files)
+    else:
+        getpage(files)
+    try:
+        with open(files, 'r', encoding="utf-8") as f:
+            today = json.load(f)
+            content = today['data']['content']
+            translation = today['data']['translation']
+            author = "--- {0}".format(today['data']['author'])
+        todaySays = '''
 {0}
 
 {1}
 
 \t\t\t\t\t\t{2}
 '''.format(content, translation, author)
-    return todaySays
+        return todaySays
+    except FileNotFoundError:
+        logger.error("未找到每日一说（today.json）文件")
+
+
+def getpage(files):
+    try:
+        req = requests.get(
+            "https://rest.shanbay.com/api/v2/quote/quotes/today/", timeout=3)
+        with open(files, 'w', encoding="utf-8") as f:
+            f.write(req.text)
+    except requests.exceptions.ConnectionError:
+        logger.warning("更新每日一说超时")
+    except requests.exceptions.ReadTimeout:
+        logger.warning("更新每日一说超时")

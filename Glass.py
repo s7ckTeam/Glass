@@ -10,6 +10,9 @@
 If you don't go through the cold, you can't get the fragrant plum blossom.
 '''
 
+import sys
+sys.dont_write_bytecode = True
+
 import console
 
 console.main()

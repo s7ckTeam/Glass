@@ -13,7 +13,7 @@ If you don't go through the cold, you can't get the fragrant plum blossom.
 import re
 import time
 from config.colors import mkPut
-from config.data import WebInfos, OutInfos
+from config.data import WebInfos, OutInfos, logger
 from config.rules import ruleDatas
 
 
@@ -43,9 +43,11 @@ class ruleInfo():
                 webTitle = webTitles[0]
             else:
                 webTitle = "None"
-            print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
-            )))), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
+            # print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
+            # )))), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
             OutInfos[key] = webServer, WebInfos[key][2], webTitle
+            logger.success("{} {} {} {}".format(mkPut.green(webServer), mkPut.yellow(
+                WebInfos[key][2]), key, mkPut.blue(webTitle)))
 
     def heads(self, rulesRegex, cms):
         webTitle = ""
@@ -63,8 +65,10 @@ class ruleInfo():
             for head in WebInfos[key][0]:
                 resHeads = re.findall(rulesRegex, WebInfos[key][0][head])
                 if resHeads:
-                    print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
-                    )))), mkPut.red(cms), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
+                    logger.success("{} {} {} {} {}".format(mkPut.red(cms), mkPut.green(
+                        webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle)))
+                    # print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
+                    # )))), mkPut.red(cms), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
                     OutInfos[key] = cms, webServer, WebInfos[key][2], webTitle
                     WebInfos.pop(key)
                     break
@@ -84,8 +88,10 @@ class ruleInfo():
                 webTitle = "None"
             resCodes = re.findall(rulesRegex, WebInfos[key][1])
             if resCodes:
-                print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
-                )))), mkPut.red(cms), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
+                logger.success("{} {} {} {} {}".format(mkPut.red(cms), mkPut.green(
+                    webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle)))
+                # print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
+                # )))), mkPut.red(cms), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
                 OutInfos[key] = cms, webServer, WebInfos[key][2], webTitle
                 WebInfos.pop(key)
                 # break
@@ -106,8 +112,15 @@ class ruleInfo():
             for cookie in WebInfos[key][3]:
                 resCookies = re.findall(rulesRegex, cookie)
                 if resCookies:
-                    print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
-                    )))), mkPut.red(cms), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
+                    logger.success("{} {} {} {} {}".format(mkPut.red(cms), mkPut.green(
+                        webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle)))
+                    # print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
+                    # )))), mkPut.red(cms), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
                     OutInfos[key] = cms, webServer, WebInfos[key][2], webTitle
                     WebInfos.pop(key)
                     break
+
+
+def ruleMain():
+    start = ruleInfo()
+    start.main()
