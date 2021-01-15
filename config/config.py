@@ -31,7 +31,7 @@ ZIPBALL_PAGE = "https://github.com/s7ckTeam/Glass/zipball/main"
 GIT_REPOSITORY = "https://github.com/s7ckTeam/Glass.git"
 Website = "http://www.s7ck.com/"
 Team = "s7ck Team"
-Version = "2.0"
+Version = "2.0.1"
 
 Banner = ['''\033[1;31m
  _____     _               

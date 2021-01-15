@@ -66,7 +66,6 @@ class webInfo(threading.Thread):
                 webCodes = req.content.decode('utf-8')
             except UnicodeDecodeError:
                 webCodes = req.content.decode('gbk', 'ignore')
-            print(webCodes)
             WebInfos[url] = webHeaders, webCodes, req.status_code, req.cookies.get_dict()
             req.close()
             logger.info("命中{0}个链接".format(len(WebInfos)))
