@@ -82,7 +82,11 @@ def getPage(country):
     try:
         target = s.get(proxyGit)
     except requests.exceptions.ConnectionError:
-        target = s.get(proxyPage)
+        try:
+            target = s.get(proxyPage)
+        except requests.exceptions.ConnectionError:
+            logger.error("网络超时，获取失败，请重新获取")
+            exit(0)
     datas = target.text.split('\n')
     proxyDatas = []
     for proxy_str in datas:

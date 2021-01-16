@@ -65,6 +65,7 @@ def program_start(usage):
         pass
     if len(sys.argv) == 1:
         print(usage)
+        exit(0)
 
 
 def confs_init():
@@ -76,6 +77,7 @@ def confs_init():
     confs.proxy = None
     confs.proxylist = None
     confs.updateprogram = False
+    confs.outputTarget = None
 
 
 def set_confs():
@@ -84,10 +86,18 @@ def set_confs():
     if confs.version:
         logger.info("Version: {0}".format(Version))
         exit(0)
-
+    if confs.outputTarget:
+        outTypes = ["txt", "json", "html", "xls", "csv"]
+        if confs.outputTarget in set(outTypes):
+            pass
+        else:
+            logger.error("输出格式错误，只支持输出格式为：{0}".format(outTypes))
+            exit(0)
     if confs.ip:
         Urls.ips.append(confs.ip)
     if confs.url:
+        if not confs.url.startswith('http'):
+            confs.url = "https://" + confs.url
         Urls.url.append(confs.url)
     if confs.file:
         with open(confs.file, 'r') as f:
@@ -130,7 +140,7 @@ def set_confs():
         if confs.proxylist == "all" or confs.proxylist == "cn":
             checkProxyFile(confs.proxylist)
             if len(Proxys.proxyList) == 0:
-                logger.error("本地获取代理失败，请从新获取")
+                logger.error("本地获取代理失败，请重新获取")
                 exit(0)
             else:
                 tb = pt.PrettyTable()
@@ -150,8 +160,15 @@ def runmod():
         fmain(Urls.ips)
     if Urls.url:
         mwebs()
-        ruleMain()
-        outMain()
+        if WebInfos:
+            ruleMain()
+        else:
+            logger.info("获取信息失败")
+    if OutInfos:
+        if confs.outputTarget:
+            outMain(confs.outputTarget)
+        else:
+            outMain("txt")
 
 
 def datas_init():

@@ -33,6 +33,7 @@ class ruleInfo():
                 self.bodys(rulesRegex, cms)
         webTitle = ""
         webServer = ""
+        webCms = "None"
         for key in WebInfos:
             if 'server' in WebInfos[key][0]:
                 webServer = WebInfos[key][0]['server']
@@ -43,9 +44,7 @@ class ruleInfo():
                 webTitle = webTitles[0]
             else:
                 webTitle = "None"
-            # print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
-            # )))), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
-            OutInfos[key] = webServer, WebInfos[key][2], webTitle
+            OutInfos[key] = webCms, webServer, WebInfos[key][2], webTitle
             logger.success("{} {} {} {}".format(mkPut.green(webServer), mkPut.yellow(
                 WebInfos[key][2]), key, mkPut.blue(webTitle)))
 
@@ -67,8 +66,6 @@ class ruleInfo():
                 if resHeads:
                     logger.success("{} {} {} {} {}".format(mkPut.red(cms), mkPut.green(
                         webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle)))
-                    # print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
-                    # )))), mkPut.red(cms), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
                     OutInfos[key] = cms, webServer, WebInfos[key][2], webTitle
                     WebInfos.pop(key)
                     break
@@ -90,8 +87,6 @@ class ruleInfo():
             if resCodes:
                 logger.success("{} {} {} {} {}".format(mkPut.red(cms), mkPut.green(
                     webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle)))
-                # print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
-                # )))), mkPut.red(cms), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
                 OutInfos[key] = cms, webServer, WebInfos[key][2], webTitle
                 WebInfos.pop(key)
                 # break
@@ -114,8 +109,6 @@ class ruleInfo():
                 if resCookies:
                     logger.success("{} {} {} {} {}".format(mkPut.red(cms), mkPut.green(
                         webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle)))
-                    # print(mkPut.fuchsia("[{0}]".format(time.strftime("%H:%M:%S", time.localtime(
-                    # )))), mkPut.red(cms), mkPut.green(webServer), mkPut.yellow(WebInfos[key][2]), key, mkPut.blue(webTitle))
                     OutInfos[key] = cms, webServer, WebInfos[key][2], webTitle
                     WebInfos.pop(key)
                     break

@@ -27,7 +27,6 @@ from config.colors import mkPut
 ssl._create_default_https_context = ssl._create_unverified_context
 urllib3.disable_warnings()
 lock = threading.Lock()
-proxy = []
 
 
 class webInfo(threading.Thread):

@@ -38,6 +38,7 @@ Glass旨在帮助红队人员在资产信息收集期间能够快速从C段、�
 * requests
 * colorama
 * prettytable
+* xlsxwriter
 
 
 ### 安装
@@ -49,6 +50,10 @@ Glass旨在帮助红队人员在资产信息收集期间能够快速从C段、�
 
 ### 正式版
 
+* 2.0.2 增加自定义输出格式（-o,--output）
+  1. 支持输出的格式有：`txt`、`json`、`html`、`xls`、`csv`
+  2. 默认输出`txt`格式
+  3. 输出目录在根目录`output`下
 * 2.0
   1. 增加代理功能（--proxy）
      - 全局访问代理，支持http、https
@@ -108,6 +113,7 @@ Usage: python3 Glass.py -w webs.txt
 Usage: python3 Glass.py --proxy-list all or cn
 Usage: python3 Glass.py (-i -f -u -w) 127.0.0.1 or 127.0.0.0/24 --proxy all or cn
 Usage: python3 Glass.py --update
+Usage: python3 Glass.py -u https://96.mk/ -o html
 
 
 usage: Glass.py [-h] [-i IP] [-f FILE] [-u URL] [-w WEB] [--proxy PROXY] [--proxy-list PROXYLIST] [-v] [--update]
