@@ -74,6 +74,7 @@ def update():
                         nowVersion = re.search(
                             r"(?m)^Version\s*=\s*['\"]([^'\"]+)", f.read()).group(1)
                         logger.info("更新到最新版本：{0}".format(nowVersion))
+                        os.remove(archive)
                         success = True
             except Exception as ex:
                 logger.error("抱歉！！！更新无法完成 ('{0}')".format(ex))
