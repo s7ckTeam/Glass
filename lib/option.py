@@ -97,7 +97,7 @@ def set_confs():
         Urls.ips.append(confs.ip)
     if confs.url:
         if not confs.url.startswith('http'):
-            confs.url = "https://" + confs.url
+            confs.url = "http://" + confs.url
         Urls.url.append(confs.url)
     if confs.file:
         with open(confs.file, 'r') as f:
@@ -108,6 +108,8 @@ def set_confs():
         with open(confs.web, 'r') as f:
             for web in f.readlines():
                 if len(web) != 1:
+                    if not web.startswith('http'):
+                        web = "http://" + web
                     Urls.url.append(web.strip())
 
     if isinstance(confs["proxy"], str):
