@@ -15,6 +15,7 @@ import sys
 import random
 import prettytable as pt
 from mod.fofa import fmain
+from mod.zoomeye import zmain
 from mod.website import mwebs
 from mod.rulesCli import ruleMain
 from mod.output import outMain
@@ -78,6 +79,7 @@ def confs_init():
     confs.proxylist = None
     confs.updateprogram = False
     confs.outputTarget = None
+    confs.search = None
 
 
 def set_confs():
@@ -86,6 +88,13 @@ def set_confs():
     if confs.version:
         logger.info("Version: {0}".format(Version))
         exit(0)
+    if confs.search:
+        searchType = ["fofa", "eye"]
+        if confs.search in set(searchType):
+            pass
+        else:
+            logger.error("参数错误，e.g.(-s fofa or -s eye)")
+            exit(0)
     if confs.outputTarget:
         outTypes = ["txt", "json", "html", "xls", "csv"]
         if confs.outputTarget in set(outTypes):
@@ -159,7 +168,16 @@ def set_confs():
 
 def runmod():
     if Urls.ips:
-        fmain(Urls.ips)
+        if confs.search:
+            if confs.search == "fofa":
+                logger.info("调用Fofa接口中")
+                fmain(Urls.ips)
+            else:
+                logger.info("调用Zoomeye接口中")
+                zmain(Urls.ips)
+        else:
+            logger.info("调用Fofa接口中")
+            fmain(Urls.ips)
     if Urls.url:
         mwebs()
         if WebInfos:

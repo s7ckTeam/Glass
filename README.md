@@ -50,6 +50,12 @@ Glass旨在帮助红队人员在资产信息收集期间能够快速从C段、�
 
 ### 正式版
 
+* 2.0.5 添加自定义搜索（-s,--search）
+  1. 添加钟馗之眼（https://www.zoomeye.org/）搜索
+  2. 在`config/config.py`中`zoomeyeApi`设置，输入`key`值即可（**注：** 用的时候注意api使用条数）
+  3. -s参数[eye（钟馗之眼） or fofa（Fofa）]（python3 Glass.py -i 127.0.0.1 -s eye or fofa）
+  4. 不加参数`-s`默认使用`fofa`搜索
+
 * 2.0.4 添加删除更新的缓存文件
 * 2.0.3 扫描域名或批量扫描时可不加协议（**注：** 建议添加协议）
 * 2.0.2 增加自定义输出格式（-o,--output）
@@ -109,6 +115,7 @@ Glass旨在帮助红队人员在资产信息收集期间能够快速从C段、�
 
 ```
 Usage: python3 Glass.py -i 127.0.0.1 or 127.0.0.0/24
+Usage: python3 Glass.py -i 127.0.0.1 -s eye or fofa
 Usage: python3 Glass.py -f ips.txt
 Usage: python3 Glass.py -u https://96.mk/
 Usage: python3 Glass.py -w webs.txt
@@ -118,7 +125,7 @@ Usage: python3 Glass.py --update
 Usage: python3 Glass.py -u https://96.mk/ -o html
 
 
-usage: Glass.py [-h] [-i IP] [-f FILE] [-u URL] [-w WEB] [--proxy PROXY] [--proxy-list PROXYLIST] [-v] [--update]
+usage: Glass.py [-h] [-i IP] [-f FILE] [-u URL] [-w WEB] [--proxy PROXY] [--proxy-list PROXYLIST] [-v] [--update] [-o OUTPUTTARGET] [-s SEARCH]
 
 Glass scan.
 
@@ -133,17 +140,25 @@ optional arguments:
                         List the proxys.
   -v, --version         Show program's version number and exit.
   --update              Update the program.
+  -o OUTPUTTARGET, --output OUTPUTTARGET
+                        Select the output format.
+  -s SEARCH, --search SEARCH
+                        Choose your search engine.
 
--i 可指定单独IP或者IP段（需添加您fofa的API）
--f 批量要扫的IP或IP段（需添加您fofa的API）
+
+-i 可指定单独IP或者IP段（需添加您fofa的API或者zoomeye的API）
+-f 批量要扫的IP或IP段（需添加您fofa的API或者zoomeye的API）
 -u 单个url识别
 -w 批量url识别
+-s 指定搜索引擎
 --proxy all/cn/http://127.0.0.1:8080 使用 all表示全部 cn表示国内或者自定义的代理（支持http、https）
 --proxy-list all/cn 获取代理 all表示全部 cn表示国内
 ```
 #### 相关配置更改
 
-* API设置在`config/config.py`中`fofaApi`设置，输入对应的`email`与`key`即可
+* API设置
+  1. 在`config/config.py`中`fofaApi`设置，输入对应的`email`与`key`即可
+  2. 在`config/config.py`中`zoomeyeApi`设置，输入`key`值即可
 * 线程默认 `100`可在`config/config.py`中`threadNum`修改线程数 **（注：建议在200以内）**
 * 每日一说可设置开启关闭，在`config/config.py`中`tosayRun`，`True`为开，`False`为关
 * fofa会员搜索的更改，默认搜索`100`，在`config/config.py`中`fofaSize`更改，普通会员为`100`，高级`10000`，企业`100000`，请自行更改

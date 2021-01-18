@@ -67,9 +67,12 @@ def main():
                         action='store_true', help="Update the program.")
     parser.add_argument('-o', '--output', type=str,
                         dest='outputTarget', help='Select the output format.')
+    parser.add_argument('-s', '--search', type=str,
+                        dest='search', help='Choose your search engine.')
     args = parser.parse_args()
     usage = '''
 Usage: python3 {} -i 127.0.0.1 or 127.0.0.0/24
+Usage: python3 {} -u 127.0.0.1 -s eye or fofa
 Usage: python3 {} -f ips.txt
 Usage: python3 {} -u https://96.mk/
 Usage: python3 {} -w webs.txt
@@ -77,6 +80,6 @@ Usage: python3 {} --proxy-list all or cn
 Usage: python3 {} (-i -f -u -w) 127.0.0.1 or 127.0.0.0/24 --proxy all or cn
 Usage: python3 {} --update
 Usage: python3 {} -u https://96.mk/ -o html
-    '''.format(parser.prog, parser.prog, parser.prog, parser.prog, parser.prog, parser.prog, parser.prog, parser.prog)
+    '''.format(parser.prog, parser.prog, parser.prog, parser.prog, parser.prog, parser.prog, parser.prog, parser.prog, parser.prog)
     root = modulePath()
     initOption(usage, root, args.__dict__)
