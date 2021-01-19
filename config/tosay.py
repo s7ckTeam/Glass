@@ -50,7 +50,7 @@ def todaySay():
 def getpage(files):
     try:
         req = requests.get(
-            "https://rest.shanbay.com/api/v2/quote/quotes/today/", timeout=3)
+            "https://rest.shanbay.com/api/v2/quote/quotes/today/", timeout=5)
         with open(files, 'w', encoding="utf-8") as f:
             f.write(req.text)
     except requests.exceptions.ConnectionError:

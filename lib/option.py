@@ -23,7 +23,7 @@ from lib.proxy import checkProxyFile
 from lib.update import update
 from lib.common import getScheme
 from colorama import init as wininit
-from config.config import Version, tosayRun, Banner
+from config.config import Version, tosayRun, Banner, fofaApi, zoomeyeApi
 from config.data import Urls, Paths, WebInfos, OutInfos, Proxys, confs, logger
 
 
@@ -176,8 +176,16 @@ def runmod():
                 logger.info("调用Zoomeye接口中")
                 zmain(Urls.ips)
         else:
-            logger.info("调用Fofa接口中")
-            fmain(Urls.ips)
+            if fofaApi['email'] and fofaApi['key']:
+                logger.info("调用Fofa接口中")
+                fmain(Urls.ips)
+            elif zoomeyeApi:
+                logger.info("调用Zoomeye接口中")
+                zmain(Urls.ips)
+            else:
+                logger.warning(
+                    "请修改配置文件{0}中fofaApi或者zoomeyeApi为您的API地址".format(Paths.config_py))
+                exit(0)
     if Urls.url:
         mwebs()
         if WebInfos:

@@ -26,6 +26,9 @@ fofaApi = {
     "key": "",
 }
 
+quakeApi = ""
+shodanApi = ""
+
 fofaSize = 100
 threadNum = 100
 
@@ -33,7 +36,7 @@ ZIPBALL_PAGE = "https://github.com/s7ckTeam/Glass/zipball/main"
 GIT_REPOSITORY = "https://github.com/s7ckTeam/Glass.git"
 Website = "http://www.s7ck.com/"
 Team = "s7ck Team"
-Version = "2.0.5"
+Version = "2.0.6"
 
 Banner = ['''\033[1;31m
  _____     _               
