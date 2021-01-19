@@ -56,7 +56,7 @@ def update():
                     pass
         if glob.glob(os.path.join(directory, '*')):
             errMsg = "无法清除目录的内容 '{0}'".format(directory)
-            logger(errMsg)
+            logger.error(errMsg)
         else:
             try:
                 archive = urllib.request.urlretrieve(ZIPBALL_PAGE)[0]
