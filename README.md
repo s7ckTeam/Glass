@@ -244,3 +244,11 @@ python3 Glass.py -f ips.txt //支持文本内IP资产，可添加IP段
 Github项目地址（BUG、需求、规则欢迎提交）: https://github.com/s7ckTeam/Glass
 
 ![](./Image/s7ck.png)
+
+
+# 404StarLink 2.0 - Galaxy
+![](https://github.com/knownsec/404StarLink-Project/raw/master/logo.png)
+
+Glass 是 404Team [星链计划2.0](https://github.com/knownsec/404StarLink2.0-Galaxy)中的一环，如果对Glass 有任何疑问又或是想要找小伙伴交流，可以参考星链计划的加群方式。
+
+- [https://github.com/knownsec/404StarLink2.0-Galaxy#community](https://github.com/knownsec/404StarLink2.0-Galaxy#community)
