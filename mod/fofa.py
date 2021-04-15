@@ -51,13 +51,13 @@ class Fofa(threading.Thread):
             req = requests.Session()
             req.keep_alive = False
             req.headers = self.headers
-            if Proxys.proxyList:
-                if pyVersion < "3.8":
-                    req.proxies = {'https': '{0}'.format(
-                        random.choice(Proxys.scheme))}
-                else:
-                    req.proxies = {
-                        "https": 'https://{0}'.format(random.choice(Proxys.scheme))}
+#            if Proxys.proxyList:
+#                if pyVersion < "3.8":
+#                    req.proxies = {'https': '{0}'.format(
+#                        random.choice(Proxys.scheme))}
+#                else:
+#                    req.proxies = {
+#                        "https": 'https://{0}'.format(random.choice(Proxys.scheme))}
             req.mount("https://", HTTPAdapter(max_retries=2))
             target = req.get(url, timeout=10)
             lock.acquire()
