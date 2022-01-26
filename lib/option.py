@@ -16,6 +16,7 @@ import random
 import prettytable as pt
 from mod.fofa import fmain
 from mod.zoomeye import zmain
+from mod.quake import qmain
 from mod.website import mwebs
 from mod.rulesCli import ruleMain
 from mod.output import outMain
@@ -89,11 +90,11 @@ def set_confs():
         logger.info("Version: {0}".format(Version))
         exit(0)
     if confs.search:
-        searchType = ["fofa", "eye"]
+        searchType = ["fofa", "eye", "qk"]
         if confs.search in set(searchType):
             pass
         else:
-            logger.error("参数错误，e.g.(-s fofa or -s eye)")
+            logger.error("参数错误，e.g.(-s fofa or -s eye or -s qk)")
             exit(0)
     if confs.outputTarget:
         outTypes = ["txt", "json", "html", "xls", "csv"]
@@ -172,20 +173,15 @@ def runmod():
             if confs.search == "fofa":
                 logger.info("调用Fofa接口中")
                 fmain(Urls.ips)
-            else:
+            if confs.search == "eye":
                 logger.info("调用Zoomeye接口中")
                 zmain(Urls.ips)
+            if confs.search == "qk":
+                logger.info("调用Quake接口中")
+                qmain(Urls.ips)
         else:
-            if fofaApi['email'] and fofaApi['key']:
-                logger.info("调用Fofa接口中")
-                fmain(Urls.ips)
-            elif zoomeyeApi:
-                logger.info("调用Zoomeye接口中")
-                zmain(Urls.ips)
-            else:
-                logger.warning(
-                    "请修改配置文件{0}中fofaApi或者zoomeyeApi为您的API地址".format(Paths.config_py))
-                exit(0)
+            logger.error("参数错误，e.g.(-s fofa or -s eye or -s qk)")
+            exit(0)
     if Urls.url:
         mwebs()
         if WebInfos:

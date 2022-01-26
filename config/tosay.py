@@ -32,9 +32,9 @@ def todaySay():
     try:
         with open(files, 'r', encoding="utf-8") as f:
             today = json.load(f)
-            content = today['data']['content']
-            translation = today['data']['translation']
-            author = "--- {0}".format(today['data']['author'])
+            content = today['content']
+            translation = today['translation']
+            author = "--- {0}".format(today['author'])
         todaySays = '''
 {0}
 
@@ -50,7 +50,7 @@ def todaySay():
 def getpage(files):
     try:
         req = requests.get(
-            "https://rest.shanbay.com/api/v2/quote/quotes/today/", timeout=5)
+            "https://apiv3.shanbay.com/weapps/dailyquote/quote/", timeout=5)
         with open(files, 'w', encoding="utf-8") as f:
             f.write(req.text)
     except requests.exceptions.ConnectionError:

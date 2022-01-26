@@ -30,13 +30,15 @@ quakeApi = ""
 shodanApi = ""
 
 fofaSize = 100
+quakeSize = 500
+
 threadNum = 100
 
 ZIPBALL_PAGE = "https://github.com/s7ckTeam/Glass/zipball/main"
 GIT_REPOSITORY = "https://github.com/s7ckTeam/Glass.git"
 Website = "http://www.s7ck.com/"
 Team = "s7ck Team"
-Version = "2.0.6"
+Version = "2.0.7"
 
 Banner = ['''\033[1;31m
  _____     _               
