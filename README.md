@@ -54,10 +54,10 @@ Glass旨在帮助红队人员在资产信息收集期间能够快速从C段、�
 ## 二、更新日志：
 
 ### 正式版
-* 2.0.7 添加360（Quake）搜索引擎（https://quake.360.cn/quake/welcome），取消默认搜索，必须指定搜索参数`-s`[eye（钟馗之眼）、fofa（Fofa）、qk（Quake）]，修复每日一说
+* 2.0.7 添加360（Quake）搜索引擎（`https://quake.360.cn/quake/welcome`），取消默认搜索，必须指定搜索参数`-s`[eye（钟馗之眼）、fofa（Fofa）、qk（Quake）]，修复每日一说
 * 2.0.6 更改默认搜索设置，添加哪个`api`就会默认调用哪个，不需要指定，如果有多个`api`可`-s`指定
 * 2.0.5 添加自定义搜索（-s,--search）
-  1. 添加钟馗之眼（https://www.zoomeye.org/）搜索
+  1. 添加钟馗之眼（`https://www.zoomeye.org/`）搜索
   2. 在`config/config.py`中`zoomeyeApi`设置，输入`key`值即可（**注：** 用的时候注意api使用条数）
   3. -s参数[eye（钟馗之眼） or fofa（Fofa）]（python3 Glass.py -i 127.0.0.1 -s eye or fofa）
   4. 不加参数`-s`默认使用`fofa`搜索
@@ -71,11 +71,11 @@ Glass旨在帮助红队人员在资产信息收集期间能够快速从C段、�
 * 2.0
   1. 增加代理功能（--proxy）
      - 全局访问代理，支持http、https
-     - 支持自定义（格式：http://127.0.0.1:8080或者https://127.0.0.1:8080）
+     - 支持自定义（格式：`http://127.0.0.1:8080`或者`https://127.0.0.1:8080`）
      - 首次使用会按照参数获取相应代理，然后在根目录生成`/proxyFile/proxy.txt`
      - 参数（all）使用全部代理进行随机分配
      - 参数（cn）使用国内代理进行随机分配
-     - 参数（http://127.0.0.1:8080或者https://127.0.0.1:8080） 自定义的代理
+     - 参数（`http://127.0.0.1:8080`或者`https://127.0.0.1:8080`） 自定义的代理
   2. 增加获取代理功能（--proxy-list）
      - 首次使用会按照参数获取相应代理，然后在根目录生成`/proxyFile/proxy.txt`
      - 参数（all）获取全部
@@ -157,7 +157,7 @@ optional arguments:
 -u 单个url识别
 -w 批量url识别
 -s 指定搜索引擎
---proxy all/cn/http://127.0.0.1:8080 使用 all表示全部 cn表示国内或者自定义的代理（支持http、https）
+--proxy all/cn/ `http://127.0.0.1:8080` 使用 all表示全部 cn表示国内或者自定义的代理（支持http、https）
 --proxy-list all/cn 获取代理 all表示全部 cn表示国内
 ```
 #### 相关配置更改
