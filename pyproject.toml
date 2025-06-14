@@ -1,0 +1,89 @@
+[tool.poetry]
+name = "glass"
+version = "0.1.0"
+description = "Glass - A comprehensive security reconnaissance tool"
+authors = ["Glass Contributors"]
+readme = "README.md"
+packages = [{include = "config"}, {include = "lib"}, {include = "mod"}]
+
+[tool.poetry.dependencies]
+python = "^3.7.3"
+requests = "^2.28.0"
+colorama = "^0.4.6"
+prettytable = "^3.5.0"
+urllib3 = "1.25.8"
+xlsxwriter = "^3.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+pytest-cov = "^4.0.0"
+pytest-mock = "^3.10.0"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--cov=config",
+    "--cov=lib",
+    "--cov=mod",
+    "--cov-branch",
+    "--cov-report=term-missing",
+    "--cov-report=html:htmlcov",
+    "--cov-report=xml:coverage.xml",
+    "--cov-fail-under=80",
+    "-vv",
+]
+markers = [
+    "unit: marks tests as unit tests (fast, isolated)",
+    "integration: marks tests as integration tests (may require external resources)",
+    "slow: marks tests as slow running",
+]
+
+[tool.coverage.run]
+source = ["config", "lib", "mod"]
+omit = [
+    "*/tests/*",
+    "*/__pycache__/*",
+    "*/venv/*",
+    "*/virtualenv/*",
+    "*/.venv/*",
+    "*/.env/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+precision = 2
+show_missing = true
+skip_covered = false
+fail_under = 80
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.coverage.xml]
+output = "coverage.xml"
+
+[tool.poetry.scripts]
+test = "pytest:main"
+tests = "pytest:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
